@@ -2,7 +2,10 @@
 <ul>
   <% @flashcards.each do |flashcard| %>
     <li>
-      <%= link_to flashcard.content, flashcard_path(flashcard) %>
+      <%= link_to flashcard_path(flashcard) do %>
+        <%= image_tag flashcard.image, class: 'flashcard-image' if flashcard.image.present? %>
+        <%= flashcard.content %>
+      <% end %>
     </li>
   <% end %>
 </ul>

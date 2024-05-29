@@ -1,5 +1,5 @@
 .flashcard-image {
-  width: 1280px; /* 画像の幅を1280pxに設定 */
-  height: 720px; /* 高さを720pxに設定 */
+  width: 200px; /* 画像の幅を1280pxに設定 */
+  height: auto; /* 高さを720pxに設定 */
 }
 

@@ -8,4 +8,10 @@
   <% end %>
 </ul>
 <p>すべてのフラッシュカードを確認しました。</p>
+
+<% if user_signed_in? %>
+  <% progress = current_user.progresses.find_by(category: @category) %>
+  <p>このカテゴリの学習完了回数: <%= progress ? progress.completed_count : 0 %></p>
+<% end %>
+
 <%= link_to 'カテゴリ一覧に戻る', categories_path %>

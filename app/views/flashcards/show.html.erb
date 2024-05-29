@@ -1,7 +1,9 @@
-<h1><%= @flashcard.content %></h1>
-<% if @flashcard.image.present? %>
-  <%= image_tag @flashcard.image, class: 'flashcard-image' %>
-<% end %>
+<div class="flashcard-container">
+  <h1 class="flashcard-content"><%= @flashcard.content %></h1>
+  <% if @flashcard.image.present? %>
+    <%= image_tag @flashcard.image, class: 'flashcard-image' %>
+  <% end %>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {

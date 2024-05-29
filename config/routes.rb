@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'categories#index'
-  resources :categories, only: [:index, :show] do
-    resources :flashcards, only: [:show]
+  resources :categories do
+    resources :flashcards
   end
+
+  # ルートパスを設定
+  root 'categories#index'
 end
 

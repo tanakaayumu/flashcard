@@ -8,12 +8,25 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-fruits = Category.create(name: 'Fruits')
-vehicles = Category.create(name: 'Vehicles')
+# カテゴリを作成
+part1 = Category.create(name: 'part1')
 
-Flashcard.create([
-  { content: 'りんご', image: 'apple.jpg', audio: 'apple.mp3', category: fruits },
-  { content: 'バナナ', image: 'banana.jpg', audio: 'banana.mp3', category: fruits },
-  { content: '車', image: 'car.jpg', audio: 'car.mp3', category: vehicles },
-  { content: '自転車', image: 'bicycle.jpg', audio: 'bicycle.mp3', category: vehicles }
-])
+# 画像フォルダの内容をもとにフラッシュカードを作成
+flashcards_data = [
+  { content: '城', image: 'flashcards/castle.jpg', audio: 'castle.mp3', category: part1 },
+  { content: '猫', image: 'flashcards/cat.jpg', audio: 'cat.mp3', category: part1 },
+  { content: '犬', image: 'flashcards/dog.jpg', audio: 'dog.mp3', category: part1 },
+  { content: '妖精', image: 'flashcards/fairy.jpg', audio: 'fairy.mp3', category: part1 },
+  { content: '山', image: 'flashcards/mountain.jpg', audio: 'mountain.mp3', category: part1 },
+  { content: '夜', image: 'flashcards/night.jpg', audio: 'night.mp3', category: part1 },
+  { content: 'ロボット', image: 'flashcards/robot.jpg', audio: 'robot.mp3', category: part1 },
+  { content: '侍', image: 'flashcards/samurai.jpg', audio: 'samurai.mp3', category: part1 },
+  { content: '船', image: 'flashcards/ship.jpg', audio: 'ship.mp3', category: part1 },
+  { content: '宇宙船', image: 'flashcards/spaceship.jpg', audio: 'spaceship.mp3', category: part1 },
+  { content: '夕日', image: 'flashcards/sunset.jpg', audio: 'sunset.mp3', category: part1 },
+  { content: '魔法使い', image: 'flashcards/wizard.jpg', audio: 'wizard.mp3', category: part1 }
+]
+
+flashcards_data.each do |data|
+Flashcard.find_or_create_by(content: data[:content], image: data[:image], audio: data[:audio], category: data[:category])
+end

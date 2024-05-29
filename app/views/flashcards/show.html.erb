@@ -9,6 +9,7 @@
     msg.lang = 'ja-JP'; // 日本語の言語コードを設定
     window.speechSynthesis.speak(msg);
 
+    // カードの自動切り替えを再度有効にする
     setTimeout(function() {
       var nextFlashcard = <%= @next_flashcard.to_json.html_safe %>;
 

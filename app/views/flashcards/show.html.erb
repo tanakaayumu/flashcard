@@ -1,29 +1,25 @@
 <h1><%= @flashcard.content %></h1>
 <% if @flashcard.image.present? %>
-  <%= image_tag @flashcard.image %>
+  <%= image_tag @flashcard.image, class: 'flashcard-image' %>
 <% end %>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    console.log("JavaScript is working"); // 確認用ログ
-
     var msg = new SpeechSynthesisUtterance('<%= @flashcard.content %>');
     msg.lang = 'ja-JP'; // 日本語の言語コードを設定
     window.speechSynthesis.speak(msg);
 
     setTimeout(function() {
       var nextFlashcard = <%= @next_flashcard.to_json.html_safe %>;
-      console.log("Next flashcard:", nextFlashcard); // デバッグ用ログ
 
       if (nextFlashcard && nextFlashcard.id) {
         var nextUrl = '<%= category_flashcard_path(@flashcard.category, ":id") %>'.replace(":id", nextFlashcard.id);
-        console.log("Next URL:", nextUrl); // デバッグ用ログ
         window.location.href = nextUrl;
       } else {
         var categoryUrl = '<%= category_path(@flashcard.category) %>';
-        console.log("Category URL:", categoryUrl); // デバッグ用ログ
         window.location.href = categoryUrl; // 確認画面に遷移
       }
     }, 1000); // 1秒ごとに次のカードに切り替え
   });
 </script>
+

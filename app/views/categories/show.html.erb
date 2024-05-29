@@ -1,0 +1,11 @@
+<h1>確認: <%= @category.name %>のフラッシュカード</h1>
+<p>以下は、<%= @category.name %>カテゴリ内のすべてのフラッシュカードです。</p>
+<ul>
+  <% @flashcards.each do |flashcard| %>
+    <li>
+      <%= flashcard.content %>
+    </li>
+  <% end %>
+</ul>
+<p>すべてのフラッシュカードを確認しました。</p>
+<%= link_to 'カテゴリ一覧に戻る', categories_path %>

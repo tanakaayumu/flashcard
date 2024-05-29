@@ -1,0 +1,8 @@
+<h1>Flashcards</h1>
+<ul>
+  <% @flashcards.each do |flashcard| %>
+    <li>
+      <%= link_to flashcard.content, flashcard_path(flashcard) %>
+    </li>
+  <% end %>
+</ul>

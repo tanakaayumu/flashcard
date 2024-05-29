@@ -1,0 +1,22 @@
+<h1>Categories</h1>
+<ul>
+  <% if @categories.present? %>
+    <% @categories.each do |category| %>
+      <% if category.flashcards.any? %>
+        <li>
+          <%= link_to category.name, category_flashcard_path(category, category.flashcards.first) %>
+        </li>
+      <% else %>
+        <li>
+          <%= category.name %> (No flashcards available)
+        </li>
+      <% end %>
+    <% end %>
+  <% else %>
+    <li>No categories available</li>
+  <% end %>
+</ul>
+
+
+
+

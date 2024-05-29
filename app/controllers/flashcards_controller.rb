@@ -8,8 +8,8 @@ class FlashcardsController < ApplicationController
     # 学習完了時の進捗を更新
     if @next_flashcard.nil?
       progress = current_user.progresses.find_or_create_by(category: @flashcard.category)
+      progress.update(completed_count: 0) if progress.completed_count.nil?
       progress.increment!(:completed_count)
-      Rails.logger.info "Progress updated: #{progress.inspect}"
     end
   end
 end

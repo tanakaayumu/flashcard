@@ -1,24 +1,57 @@
-# README
+# FlashcardApp
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## セットアップ手順
 
-Things you may want to cover:
+### 1. 依存関係のインストール
 
-* Ruby version
+```bash
+bundle install
+```
 
-* System dependencies
+### 2. データベースのリセットとシードデータの投入
 
-* Configuration
+SQLiteデータベースをリセットし、シードデータを再投入します。
 
-* Database creation
+```bash
+rails db:drop db:create db:migrate db:seed
+```
 
-* Database initialization
+### 3. サーバーの起動
 
-* How to run the test suite
+```bash
+rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## 画像の量産
 
-* Deployment instructions
+### 画像の保存
 
-* ...
+収集した画像を`app/assets/images/flashcards`フォルダに保存します。
+
+### シードデータの作成
+
+```bash
+`db/seeds.rb`ファイルを編集して、収集した画像を使用してフラッシュカードを量産します。
+ruby:flashcard_app/db/seeds.rb
+flashcards_data = [
+{ content: 'りんご', image: 'flashcards/apple.jpg', category: fruits },
+{ content: 'バナナ', image: 'flashcards/banana.jpg', category: fruits },
+{ content: '車', image: 'flashcards/car.jpg', category: vehicles },
+{ content: '自転車', image: 'flashcards/bicycle.jpg', category: vehicles }
+]
+flashcards_data.each do |data|
+Flashcard.find_or_create_by(content: data[:content], image: data[:image], category: data[:category])
+end
+```
+
+
+
+## 音声読み上げ
+```bash
+`SpeechSynthesis` APIを使用して、`Flashcard`テーブルの`content`カラムのデータを読み上げます。
+
+javascript:flashcard_app/app/views/flashcards/show.html.erb
+var msg = new SpeechSynthesisUtterance('<%= @flashcard.content %>');
+msg.lang = 'ja-JP'; // 日本語の言語コードを設定
+window.speechSynthesis.speak(msg);
+```
